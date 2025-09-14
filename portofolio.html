@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio Wardatul Khoiroh</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      line-height: 1.6;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10,61,98,0.9);
+      color: #fff;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: none; /* default hidden */
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: .3s;
+    }
+    nav ul li a:hover {
+      color: #f1c40f;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url('foto1.jpg') no-repeat center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10%;
+      color: #fff;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+    }
+    .hero h4 {
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-size: 56px;
+    }
+    .hero p {
+      font-size: 22px;
+      margin: 10px 0 20px;
+    }
+    .hero a {
+      display: inline-block;
+      width : fit-content;
+      padding: 12px 24px;
+      background: #0a3d62;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition: 0.3s;
+    }
+    .hero a:hover {
+      background: #f1c40f;
+      color: #0a3d62;
+      transform: translateY(-3px);
+    }
+
+    /* Wave Divider */
+    .wave {
+      position: relative;
+      height: 100px;
+      overflow: hidden;
+    }
+    .wave svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* SECTION STYLE */
+    section {
+      padding: 80px 10%;
+      position: relative;
+    }
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #0a3d62;
+      text-align: center;
+    }
+
+    /* ABOUT */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .about-text p {
+      text-align: justify;
+    }
+    .about-img {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .about-img img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 50%;
+      z-index: 2;
+      position: relative;
+      border: 8px solid #0a3d62;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .about-img::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: linear-gradient(135deg, #0a3d62, #60a3bc);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: 1;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    /* PENDIDIKAN TIMELINE */
+    .timeline {
+      position: relative;
+      margin: 40px auto;
+      padding-left: 30px;
+      max-width: 700px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #0a3d62;
+      border-radius: 2px;
+    }
+    .timeline-item {
+      margin-bottom: 30px;
+    }
+    .timeline-item h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #0a3d62;
+    }
+    .timeline-item span {
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* HOBI */
+    .hobi-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .hobi-gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: .3s;
+    }
+    .hobi-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Skill */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .skill {
+      flex: 1 1 150px;
+      background: #e8f6ff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      border: 1px solid #0a3d62;
+      transition: .3s;
+      font-weight: bold;
+    }
+    .skill:hover {
+      background: #0a3d62;
+      color: #fff;
+      transform: translateY(-5px);
+    }
+
+    /* KONTAK */
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .contact-links a {
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #0a3d62;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: .3s;
+    }
+    .contact-links a:hover {
+      background: #f1c40f;
+      color: #0a3d62;
+    }
+
+    footer {
+      text-align: center;
+      background: #0a3d62;
+      color: #fff;
+      padding: 20px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (hidden dulu) -->
+  <header id="mainHeader">
+    <nav>
+      <div class="logo">Wardatul Khoiroh</div>
+      <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#pendidikan">Pendidikan</a></li>
+        <li><a href="#hobi">Hobi</a></li>
+        <li><a href="#Skill">Skill</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h4>KENALAN DULU YUK!</h4>
+    <h1>Wardatul Khoiroh</h1>
+    <p>Bendahara & Soon To Be Software Engineer</p>
+    <a href="#about" id="showHeaderBtn">SELENGKAPNYA</a>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+    </svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about" style="background:#e8f6ff;">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Halo semuanya, perkenalkan saya Wardatul Khoiroh, you can call me Warda or Wardes. Saya merupakan mahasiswa semester 5 di Institut Teknologi Bandung, jurusan Teknik Informatika. Sejak awal perkuliahan, saya memiliki ketertarikan yang besar pada dunia pemrograman, analisis data, dan pengembangan perangkat lunak. Bagi saya, teknologi bukan hanya sekadar alat, melainkan sebuah sarana untuk menyelesaikan permasalahan nyata dan menciptakan solusi yang bermanfaat. Oleh karena itu, saya senang mendalami berbagai bidang, mulai dari algoritma dan struktur data, manajemen keuangan digital, hingga pengembangan sistem yang efisien dan inovatif. Selain kegiatan akademik, saya juga aktif berorganisasi dan mengemban amanah sebagai bendahara. Pengalaman ini melatih saya untuk lebih disiplin, teliti, serta mampu mengelola tanggung jawab dengan baik. Ke depan, saya bercita-cita untuk menjadi seorang software engineer yang tidak hanya mahir menulis kode, tetapi juga mampu menghadirkan inovasi yang membawa dampak positif bagi banyak orang.</p>
+    </div>
+    <div class="about-img">
+      <img src="foto2.jpg" alt="Foto Wardatul Khoiroh">
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
+    </svg>
+  </div>
+
+  <!-- PENDIDIKAN -->
+  <section id="pendidikan">
+    <h2>Riwayat Pendidikan</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>S1 Informatika - Institut Teknologi Bandung</h3>
+        <span>2023 - Sekarang</span>
+      </div>
+      <div class="timeline-item">
+        <h3>MAN 2 Kota Malang</h3>
+        <span>2020 - 2023</span>
+      </div> 
+      <div class="timeline-item">
+        <h3>MTsN 1 Lumajang</h3>
+        <span>2018 - 2020</span>
+      </div>   
+      <div class="timeline-item">
+        <h3>SD Al-Ikhlash Lumajang</h3>
+        <span>2012 - 2018</span>
+      </div>  
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+    </svg>
+  </div>
+
+  <!-- HOBI -->
+  <section id="hobi" style="background:#e8f6ff;">
+    <h2>Hobi</h2>
+    <p style="text-align:center;">Saya senang jalan-jalan dan menikmati keindahan alam seperti air terjun, bukit, pantai, dan gunung. Selain itu, saya hobi berenang, mencicipi kuliner baru, serta memotret momen perjalanan maupun hal-hal sederhana di sekitar saya. Bagi saya, hobi ini bukan hanya hiburan, tetapi juga cara untuk menemukan inspirasi dan mengabadikan cerita.</p>
+    <div class="hobi-gallery">
+      <img src="foto3.jpg" alt="Potret">
+      <img src="foto4.jpg" alt="Kuliner">
+      <img src="foto.jpg" alt="stone garden">
+      <img src="foto5.jpg" alt="air terjun">
+      <img src="foto6.jpg" alt="sunrise">
+      <img src="foto7.jpg" alt="pantai">
+      <img src="foto8.jpg" alt="air terjun">
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
+    </svg>
+  </div>
+
+  <!-- Skill -->
+  <section id="Skill">
+    <h2>Skill & Experience</h2>
+    <div class="skills">
+      <div class="skill">HTML & CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Python</div>
+      <div class="skill">Haskell</div>
+      <div class="skill">C++</div>
+      <div class="skill">Trainer CDT 2024</div>
+      <div class="skill">Treasurer Arkavidia 9.0</div>
+      <div class="skill">Bendahara Pusat I KAT ITB 2025</div>
+    </div>
+  </section>
+
+  <!-- Wave -->
+  <div class="wave">
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+    </svg>
+  </div>
+
+  <!-- KONTAK -->
+  <section id="contact" style="background:#e8f6ff;">
+    <h2>Kontak</h2>
+    <div class="contact-links">
+      <a href="mailto:wardatulkhoiroh11@gmail.com">Email</a>
+      <a href="https://wa.me/6285338308309" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/wrdtlkhoir" target="_blank">Instagram</a>
+      <a href="https://line.me/ti/p/~wrdtlkhoir" target="_blank">Line</a>
+      <a href="https://github.com/wrdtlkhoir" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Wardatul Khoiroh.</p>
+  </footer>
+
+  <script>
+    // Header baru muncul setelah klik "Selengkapnya"
+    document.addEventListener('DOMContentLoaded', function() {
+      var header = document.getElementById('mainHeader');
+      var btn = document.getElementById('showHeaderBtn');
+      if (header && btn) {
+        btn.addEventListener('click', function() {
+          header.style.display = 'block';
+          document.body.style.paddingTop = '70px';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
