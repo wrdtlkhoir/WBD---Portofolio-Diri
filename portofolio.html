@@ -14,9 +14,28 @@
       font-family: 'Segoe UI', sans-serif;
       color: #333;
       line-height: 1.6;
+      background: #fff;
+      position: relative;
+      overflow-x: hidden;
     }
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Background bubble */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px);
+      background-size: 60px 60px;
+      z-index: -1;
+      animation: moveBg 25s linear infinite;
+    }
+    @keyframes moveBg {
+      from { background-position: 0 0; }
+      to { background-position: 120px 120px; }
     }
 
     /* HEADER */
@@ -112,17 +131,31 @@
       width: 100%;
       height: 100%;
     }
+    .wave svg path {
+      animation: waveMove 6s ease-in-out infinite alternate;
+    }
+    @keyframes waveMove {
+      0% { d: path("M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z"); }
+      100% { d: path("M0,60 C180,130 320,-40 500,60 L500,150 L0,150 Z"); }
+    }
 
     /* SECTION STYLE */
     section {
       padding: 80px 10%;
       position: relative;
+      scroll-margin-top: 120px; /* biar pas saat klik menu */
     }
     section h2 {
       font-size: 32px;
       margin-bottom: 20px;
       color: #0a3d62;
       text-align: center;
+      position: relative;
+      animation: fadeUp 1.2s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ABOUT */
@@ -168,7 +201,7 @@
       box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
     }
 
-    /* PENDIDIKAN TIMELINE */
+    /* TIMELINE */
     .timeline {
       position: relative;
       margin: 40px auto;
@@ -270,12 +303,18 @@
 </head>
 <body>
 
-  <!-- HEADER (hidden dulu) -->
+  <!-- Musik autoplay -->
+  <audio autoplay loop style="display:none;">
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- HEADER -->
   <header id="mainHeader">
     <nav>
       <div class="logo">Wardatul Khoiroh</div>
       <ul>
-        <li><a href="#about">Tentang</a></li>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#about">Tentang</a></li>
         <li><a href="#pendidikan">Pendidikan</a></li>
         <li><a href="#hobi">Hobi</a></li>
         <li><a href="#Skill">Skill</a></li>
@@ -285,17 +324,17 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <h4>KENALAN DULU YUK!</h4>
     <h1>Wardatul Khoiroh</h1>
     <p>Bendahara & Soon To Be Software Engineer</p>
-    <a href="#about" id="showHeaderBtn">SELENGKAPNYA</a>
+  <a href="#about" id="showHeaderBtn">SELENGKAPNYA</a>
   </section>
 
   <!-- Wave -->
   <div class="wave">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+      <path d="M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
     </svg>
   </div>
 
@@ -313,7 +352,7 @@
   <!-- Wave -->
   <div class="wave">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
+      <path d="M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
     </svg>
   </div>
 
@@ -343,7 +382,7 @@
   <!-- Wave -->
   <div class="wave">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+      <path d="M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
     </svg>
   </div>
 
@@ -365,7 +404,7 @@
   <!-- Wave -->
   <div class="wave">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
+      <path d="M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z" style="stroke:none;fill:#fff;"></path>
     </svg>
   </div>
 
@@ -387,7 +426,7 @@
   <!-- Wave -->
   <div class="wave">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-      <path d="M0.00,49.98 C149.99,150.00 349.99,-49.98 500.00,49.98 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
+      <path d="M0,49 C150,150 350,-50 500,49 L500,150 L0,150 Z" style="stroke:none;fill:#e8f6ff;"></path>
     </svg>
   </div>
 
@@ -408,14 +447,36 @@
   </footer>
 
   <script>
-    // Header baru muncul setelah klik "Selengkapnya"
+    // Saat halaman di-refresh, selalu ke hero section (id=home) dan header tetap hidden
     document.addEventListener('DOMContentLoaded', function() {
+      // Jika ada hash selain #home, hapus hash dan scroll ke hero
+      if (window.location.hash && window.location.hash !== '#home') {
+        history.replaceState(null, '', window.location.pathname + window.location.search + '#home');
+        setTimeout(function() {
+          var hero = document.getElementById('home');
+          if (hero) hero.scrollIntoView({behavior: 'auto'});
+        }, 10);
+      }
+      // Header tetap hidden saat reload
       var header = document.getElementById('mainHeader');
+      if (header) {
+        header.style.display = 'none';
+        document.body.style.paddingTop = '0';
+      }
+      // Tampilkan header setelah klik selengkapnya
       var btn = document.getElementById('showHeaderBtn');
       if (header && btn) {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
           header.style.display = 'block';
           document.body.style.paddingTop = '70px';
+          // Scroll ke section about
+          var about = document.getElementById('about');
+          if (about) {
+            about.scrollIntoView({behavior: 'smooth'});
+            // update hash agar menu aktif
+            history.replaceState(null, '', '#about');
+          }
         });
       }
     });
